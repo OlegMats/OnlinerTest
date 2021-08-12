@@ -13,11 +13,8 @@ public class ServicesPage {
         Map = new ServicesPageMap();
     }
 
-    public void OpenSortingDropdown(){
-        Map.SortingDropdown().click();
-    }
     public void CheckUnfulfilledTasks(){
-        Map.UnfulfilledTasks().click();
+        Driver.JsClick(Map.UnfulfilledTasks());
     }
 
     public class ServicesPageMap {
@@ -25,13 +22,16 @@ public class ServicesPage {
             return Driver.FindElement(By.xpath("//div[contains(@class,'dropdown-style')]/child::a"));
         }
         public WebElement UnfulfilledTasks(){
-            return Driver.FindElement(By.xpath("//span[contains(text(), 'Невыполненные')]/parent::span/preceding-sibling::span"));
+            return Driver.FindElement(By.xpath("//span[contains(text(), 'Невыполненные')]/parent::span/preceding-sibling::input"));
         }
         public List<WebElement> ResultServiceStatuses(){
             return Driver.FindElements(By.xpath("//div[@class='service-offers__list']/descendant::div[contains(@class,'service-offers__status')]"));
         }
         public WebElement ResultDetails(){
             return Driver.FindElement(By.xpath("//span[contains(text(),'Найдено')]"));
+        }
+        public List<WebElement> ServiceOfferPreviewPicture(){
+            return Driver.FindElements(By.xpath("//div[@class='service-offers__list']/descendant::span[@class='service-offers__preview']/child::span"));
         }
     }
 }

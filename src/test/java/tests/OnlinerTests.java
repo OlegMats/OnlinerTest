@@ -72,11 +72,13 @@ public class OnlinerTests extends BaseTest {
         FW.Log().Info("step1 is finished");
 
         //Step2
-        Pages.servicesPage.OpenSortingDropdown();
         Pages.servicesPage.CheckUnfulfilledTasks();
         Verifications.WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), "Не выполнен");
 
         //Step3
         Verifications.NumberOfOrdersMoreThanOne();
+
+        //Step4
+        Verifications.WetherAllOrdersContainPicture();
     }
 }

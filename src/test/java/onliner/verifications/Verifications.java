@@ -1,5 +1,6 @@
 package onliner.verifications;
 
+import framework.FW;
 import framework.selenium.Driver;
 import onliner.pages.HeaderNavigationThroughPages;
 import onliner.pages.Pages;
@@ -40,6 +41,16 @@ public class Verifications {
     }
 
     public static void NumberOfOrdersMoreThanOne() {
+        Driver.wait.Sleep(2);
         Assert.assertFalse(Pages.servicesPage.Map.ResultDetails().getText().contains("Нет Заказов"));
+    }
+    public static void WetherAllOrdersContainPicture(){
+        for(WebElement element : Pages.servicesPage.Map.ServiceOfferPreviewPicture()){
+            if (element.getAttribute("style").isEmpty()){
+                FW.Log().Info("Not All orders contain preview pictures");
+                return;
+            }
+        }
+        FW.Log().Info("All orders contain preview pictures");
     }
 }
