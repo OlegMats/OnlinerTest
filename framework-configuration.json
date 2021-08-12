@@ -1,0 +1,8 @@
+{
+  "driver": {
+    "browser": "chrome"
+  },
+  "test": {
+    "url": "https://www.onliner.by/"
+  }
+}
