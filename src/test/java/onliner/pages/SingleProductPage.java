@@ -16,7 +16,7 @@ public class SingleProductPage extends HeaderNavigationThroughPages {
     }
     public void GoToBasket() {
         Map.BasketButton().click();
-        Driver.wait.Sleep(1);
+        Driver.wait.Sleep(2);
     }
 
     public class SingleProductPageMap {

@@ -41,13 +41,9 @@ public abstract class BaseTest {
             default:
                 FW.Log().Warning("Something went wrong. Try to debug this test.");
         }
-    }
-
-    @AfterTest
-    public void afterTest() {
-        FW.Log().CloseStream();
         if (Driver.Current() != null) {
             Driver.Quit();
         }
+        FW.Log().CloseStream();
     }
 }

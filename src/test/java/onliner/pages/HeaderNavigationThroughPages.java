@@ -20,9 +20,18 @@ public class HeaderNavigationThroughPages {
         Map.ServicesLink().click();
     }
 
+    public void GoToForum(){
+        Map.ForumLink().click();
+    }
+
     public String GetHeaderTitle() {
         return Map.HeaderTitle().getAttribute("content");
     }
+
+    public void GoToLoginForm(){
+        Map.LoginButton().click();
+    }
+
 
     public class HeaderNavigationThroughPagesMap {
 
@@ -34,10 +43,20 @@ public class HeaderNavigationThroughPages {
             return Driver.FindElement(By.xpath("//a[@href='https://s.onliner.by/tasks'][contains(@class,'b-main')]"));
         }
 
+        public WebElement ForumLink(){
+            return Driver.FindElement(By.xpath("//a[@href='https://forum.onliner.by/']"));
+        }
+
         public WebElement HeaderTitle() {
             return Driver.FindElement(By.xpath("//meta[@property='og:title']"));
         }
+
+        public WebElement LoginButton(){
+            return Driver.FindElement(By.xpath("//div[contains(@class,'auth-bar__item')][contains(text(),'Вход')]"));
+        }
+
     }
+
 }
 
 

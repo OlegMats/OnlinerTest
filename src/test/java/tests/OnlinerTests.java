@@ -2,6 +2,7 @@ package tests;
 
 import framework.FW;
 import onliner.pages.Pages;
+import onliner.pages.RegistrationPage;
 import onliner.verifications.Verifications;
 import org.testng.annotations.Test;
 
@@ -32,6 +33,31 @@ public class OnlinerTests extends BaseTest {
         //Step 4
         Pages.catalog.OpenSortingDropdown();
         Pages.catalog.ChooseSortingCriteria("Дорогие");
+        FW.Log().Info("step4 is finished");
+    }
+
+    @Test
+    public void Case2() {
+
+        //Step 1
+        Pages.headerNavigation.GoToLoginForm();
+        Pages.loginPage.GoToRegistrationForm();
+        Verifications.RegistrationHeaderIsEqual("Регистрация");
+        FW.Log().Info("step1 is finished");
+
+        //Step 2
+        Pages.registrationPage.FillInEmailField();
+        Verifications.VerifyEmailWarningPopupAppeared("Некорректный e-mail");
+        FW.Log().Info("step2 is finished");
+
+        //Step 3
+        Pages.registrationPage.FillInPassField();
+        Verifications.VerifyPassWarningPopup("Минимум 8 символов");
+        FW.Log().Info("step3 is finished");
+
+        //Step 4
+        Pages.registrationPage.FillInRepeatPassField();
+        Verifications.VerifyRepeatPassWarningPopup("Пароли не совпадают");
         FW.Log().Info("step4 is finished");
     }
 
@@ -74,11 +100,37 @@ public class OnlinerTests extends BaseTest {
         //Step2
         Pages.servicesPage.CheckUnfulfilledTasks();
         Verifications.WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), "Не выполнен");
+        FW.Log().Info("step2 is finished");
 
         //Step3
         Verifications.NumberOfOrdersMoreThanOne();
+        FW.Log().Info("step3 is finished");
 
         //Step4
         Verifications.WetherAllOrdersContainPicture();
+        FW.Log().Info("step4 is finished");
+    }
+
+    @Test
+    public void Case5() {
+
+        //Step1
+        Pages.headerNavigation.GoToForum();
+        Verifications.TabTitleIsEqual("Форум onliner.by - Главная страница");
+        FW.Log().Info("step1 is finished");
+
+        //Step2
+        Pages.forumPage.GoToNewFor24Hours();
+        Verifications.ForumHeaderIsEqual("Новое за 24 часа");
+        FW.Log().Info("step2 is finished");
+
+        //Step3
+        Verifications.NumberOfForumTopicsMoreThanZero();
+        FW.Log().Info("step3 is finished");
+
+        //Step4
+        Pages.forumPage.GoToLastForumTopicsPage();
+        Verifications.EnsureForumTopicPublicationTimeLess24();
+        FW.Log().Info("step4 is finished");
     }
 }

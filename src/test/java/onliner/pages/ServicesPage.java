@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class ServicesPage {
+public class ServicesPage extends HeaderNavigationThroughPages{
     public ServicesPageMap Map;
 
     public ServicesPage() {
@@ -15,6 +15,7 @@ public class ServicesPage {
 
     public void CheckUnfulfilledTasks(){
         Driver.JsClick(Map.UnfulfilledTasks());
+        Driver.wait.Sleep(1);
     }
 
     public class ServicesPageMap {
@@ -28,7 +29,7 @@ public class ServicesPage {
             return Driver.FindElements(By.xpath("//div[@class='service-offers__list']/descendant::div[contains(@class,'service-offers__status')]"));
         }
         public WebElement ResultDetails(){
-            return Driver.FindElement(By.xpath("//span[contains(text(),'Найдено')]"));
+            return Driver.FindElement(By.xpath("//span[contains(text(),'Найден')]"));
         }
         public List<WebElement> ServiceOfferPreviewPicture(){
             return Driver.FindElements(By.xpath("//div[@class='service-offers__list']/descendant::span[@class='service-offers__preview']/child::span"));
