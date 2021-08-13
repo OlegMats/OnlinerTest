@@ -15,15 +15,14 @@ public class CatalogPage extends HeaderNavigationThroughPages {
 
     public void GoToElectronics() {
         Map.Electronics().click();
-        Driver.wait.Sleep(1);
     }
 
     public void GoToMobilePhonesAccessories() {
-        Driver.wait.Until((WebDriver) -> Map.MobilePhonesAccessories());
         Map.MobilePhonesAccessories().click();
     }
 
     public void GoToVideoGames() {
+        Driver.wait.Sleep(1);
         Map.VideoGames().click();
     }
 

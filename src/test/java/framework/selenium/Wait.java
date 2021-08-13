@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -44,10 +43,6 @@ public class Wait {
     public void UntilTrue(ExpectedCondition<Boolean> condition, String message) {
        if (!wait.until(condition))
            FW.Log().Error(message);
-    }
-
-    public List<WebElement> ListUntil(Function<WebDriver, List<WebElement>> condition) {
-        return wait.until(condition);
     }
 
     public void Sleep(int sec) {

@@ -1,6 +1,8 @@
 package tests;
 
 import framework.FW;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import onliner.pages.Pages;
 import onliner.verifications.Verifications;
 import org.testng.annotations.Test;
@@ -8,6 +10,8 @@ import org.testng.annotations.Test;
 public class OnlinerTests extends BaseTest {
 
     @Test
+    @Description("First Test - 'Mobile phones'")
+    @Epic("Onliner")
     public void Case1() {
 
         //Step 1

@@ -38,6 +38,7 @@ public class Verifications {
     }
 
     public static void BasketIsNotEmpty() {
+        Driver.wait.Sleep(1);
         Assert.assertTrue(Pages.basketPage.Map.BasketContent().getText().contains("на сумму"), "Корзина пуста");
     }
 
@@ -85,8 +86,8 @@ public class Verifications {
     }
 
     public static void VerifyEmailWarningPopupAppeared(String message) {
-        Driver.wait.Sleep(2);
-        //Driver.wait.UntilTrue(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.EmailWarningPopup(), message), "Отсутствует подсказка 'Некорректный e-mail'");
+        //Driver.wait.Until(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.EmailWarningPopup(), message), "Отсутствует подсказка 'Некорректный e-mail'");
+        Driver.wait.Sleep(1);
         WebElementContains(Pages.registrationPage.Map.EmailWarningPopup(), message);
     }
 
@@ -95,8 +96,8 @@ public class Verifications {
     }
 
     public static void VerifyRepeatPassWarningPopup(String message) {
-        Driver.wait.Sleep(1);
         //Driver.wait.UntilTrue(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.RepeatPassWarningPopup(), message), "Отсутствует подсказка 'Пароли не совпадают'");
+        Driver.wait.Sleep(1);
         WebElementContains(Pages.registrationPage.Map.RepeatPassWarningPopup(), message);
     }
 
@@ -105,10 +106,12 @@ public class Verifications {
     }
 
     public static void EnsureBasketTitleIs(String message) {
+        Driver.wait.Sleep(1);
         WebElementTextIsEqual(Pages.productPage.Map.AddToBasketBasketButton(), message);
     }
 
     public static void VerifyOrdersStatusIs(String message) {
+        Driver.wait.Sleep(1);
         WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), message);
     }
 }
