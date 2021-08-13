@@ -2,7 +2,6 @@ package tests;
 
 import framework.FW;
 import onliner.pages.Pages;
-import onliner.pages.RegistrationPage;
 import onliner.verifications.Verifications;
 import org.testng.annotations.Test;
 
@@ -27,7 +26,7 @@ public class OnlinerTests extends BaseTest {
         //Step 3
         Pages.catalog.OpenProducerList();
         Pages.catalog.ChooseProducer("HONOR");
-        Verifications.WebElementsContain(Pages.catalog.Map.ResultPhones(1), "HONOR");
+        Verifications.VerifySearchResultPhonesContain("HONOR");
         FW.Log().Info("step3 is finished");
 
         //Step 4
@@ -78,9 +77,9 @@ public class OnlinerTests extends BaseTest {
 
         //Step 3
         Pages.catalog.OpenFirstElementOfSearchResult();
-        Verifications.WebElementTextIsEqual(Pages.productPage.Map.AddToBasketBasketButton(), "В корзину");
+        Verifications.EnsureBasketTitleIs("В корзину");
         Pages.productPage.AddIntoBasket();
-        Verifications.WebElementTextIsEqual(Pages.productPage.Map.AddToBasketBasketButton(), "В корзине");
+        Verifications.EnsureBasketTitleIs("В корзине");
         FW.Log().Info("step3 is finished");
 
         //Step 4
@@ -99,7 +98,7 @@ public class OnlinerTests extends BaseTest {
 
         //Step2
         Pages.servicesPage.CheckUnfulfilledTasks();
-        Verifications.WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), "Не выполнен");
+        Verifications.VerifyOrdersStatusIs("Не выполнен");
         FW.Log().Info("step2 is finished");
 
         //Step3

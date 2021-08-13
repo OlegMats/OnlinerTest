@@ -19,6 +19,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
     }
 
     public void GoToMobilePhonesAccessories() {
+        Driver.wait.Until((WebDriver) -> Map.MobilePhonesAccessories());
         Map.MobilePhonesAccessories().click();
     }
 
@@ -30,7 +31,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
         Map.MobilePhones().click();
     }
 
-    public void GoToConsoles(){
+    public void GoToConsoles() {
         Map.Consoles().click();
     }
 
@@ -40,7 +41,6 @@ public class CatalogPage extends HeaderNavigationThroughPages {
 
     public void ChooseProducer(String producer) {
         Map.Producer(producer).click();
-        Driver.wait.Sleep(1);
     }
 
     public void OpenPagesDropdown() {
@@ -59,7 +59,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
         Map.SortingCriteria(criteria).click();
     }
 
-    public void OpenFirstElementOfSearchResult(){
+    public void OpenFirstElementOfSearchResult() {
         Driver.wait.Sleep(1);
         Map.FirstElementOfSearchResult().click();
     }
@@ -88,12 +88,12 @@ public class CatalogPage extends HeaderNavigationThroughPages {
 
         public List<WebElement> ResultPhones(int numberOfPages) {
             List<WebElement> result = new ArrayList();
+            Driver.wait.Sleep(1);
             result.addAll(Driver.FindElements(By.xpath("//div[@class='schema-products'][@id='schema-products']/child::div[@class='schema-product__group']/descendant::div[@class='schema-product__title']")));
             for (int pageNumber = 2; pageNumber <= numberOfPages; pageNumber++) {
                 OpenPagesDropdown();
                 ChosePageNumber(pageNumber);
-                //Driver.wait.Until(ExpectedConditions.elementToBeClickable(FirstElementOfSearchResult()));
-                Driver.wait.Sleep(2);
+                Driver.wait.Sleep(1);
                 result.addAll(Driver.FindElements(By.xpath("//div[@class='schema-products'][@id='schema-products']/child::div[@class='schema-product__group']/descendant::div[@class='schema-product__title']")));
             }
             return result;

@@ -17,7 +17,7 @@ public class Driver {
         FW.Log().Info(String.format("Browser is %s", FW.Config().driver.browser));
         driver = DriverFactory.Build(FW.Config().driver.browser);
         driver.manage().window().maximize();
-        wait = new Wait(10);
+        wait = new Wait(10, 1000);
     }
 
     public static WebDriver Current(){

@@ -21,16 +21,16 @@ public class Verifications {
     }
 
     public static void WebElementContains(WebElement element, String text) {
-        Assert.assertTrue(element.getText().contains(text));
+        Assert.assertTrue(element.getText().contains(text), String.format("В элементе отсутствует текст - '%s'", text));
     }
 
     public static void WebElementsContain(List<WebElement> elements, String text) {
         for (WebElement element : elements)
-            Assert.assertTrue(element.getText().contains(text), String.format("В одном из результатов поиска отсутствует - %s", text));
+            WebElementContains(element, text);
     }
 
     public static void WebElementTextIsEqual(WebElement element, String text) {
-        Assert.assertEquals(element.getText(), text, String.format("Текстовая подпись элемента не %s", text));
+        Assert.assertEquals(element.getText(), text, String.format("Текстовая подпись элемента не '%s'", text));
     }
 
     public static void PageTitleIsEqual(HeaderNavigationThroughPages page, String pageTitle) {
@@ -81,18 +81,34 @@ public class Verifications {
     }
 
     public static void RegistrationHeaderIsEqual(String header) {
-        Assert.assertEquals(Pages.registrationPage.Map.RegistrationFormHeader().getText(), header, "Заголовок не содержит слово 'Регистрация'");
+        WebElementTextIsEqual(Pages.registrationPage.Map.RegistrationFormHeader(), header);
     }
 
     public static void VerifyEmailWarningPopupAppeared(String message) {
         Driver.wait.Sleep(2);
-        Assert.assertTrue(Pages.registrationPage.Map.EmailWarningPopup().getText().contains(message), "Отсутствует подсказка 'Некорректный e-mail'");
+        //Driver.wait.UntilTrue(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.EmailWarningPopup(), message), "Отсутствует подсказка 'Некорректный e-mail'");
+        WebElementContains(Pages.registrationPage.Map.EmailWarningPopup(), message);
     }
-    public static void VerifyPassWarningPopup(String message){
-        Assert.assertTrue(Pages.registrationPage.Map.PassWarningPopup().getText().contains(message), "Отсутствует подсказка 'Минимум 8 символов'");
+
+    public static void VerifyPassWarningPopup(String message) {
+        WebElementContains(Pages.registrationPage.Map.PassWarningPopup(), message);
     }
-    public static void VerifyRepeatPassWarningPopup(String message){
+
+    public static void VerifyRepeatPassWarningPopup(String message) {
         Driver.wait.Sleep(1);
-        Assert.assertTrue(Pages.registrationPage.Map.RepeatPassWarningPopup().getText().contains(message), "Отсутствует подсказка 'Пароли не совпадают'");
+        //Driver.wait.UntilTrue(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.RepeatPassWarningPopup(), message), "Отсутствует подсказка 'Пароли не совпадают'");
+        WebElementContains(Pages.registrationPage.Map.RepeatPassWarningPopup(), message);
+    }
+
+    public static void VerifySearchResultPhonesContain(String message) {
+        WebElementsContain(Pages.catalog.Map.ResultPhones(1), message);
+    }
+
+    public static void EnsureBasketTitleIs(String message) {
+        WebElementTextIsEqual(Pages.productPage.Map.AddToBasketBasketButton(), message);
+    }
+
+    public static void VerifyOrdersStatusIs(String message) {
+        WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), message);
     }
 }
