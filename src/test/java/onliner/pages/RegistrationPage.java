@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.Random;
 
-public class RegistrationPage extends HeaderNavigationThroughPages{
+public class RegistrationPage extends HeaderNavigationThroughPages {
     public RegistrationPageMap Map;
 
     public RegistrationPage() {
@@ -21,7 +21,8 @@ public class RegistrationPage extends HeaderNavigationThroughPages{
     public void FillInPassField() {
         Map.PassField().sendKeys(String.format("%d", new Random().nextInt(10000000)));
     }
-    public void FillInRepeatPassField(){
+
+    public void FillInRepeatPassField() {
         Map.RepeatPassField().sendKeys(RandomStringUtils.randomAlphabetic(Map.PassField().getAttribute("value").length()));
     }
 
@@ -45,9 +46,11 @@ public class RegistrationPage extends HeaderNavigationThroughPages{
         public WebElement PassWarningPopup() {
             return Driver.FindElement(By.xpath("//div[@class='auth-form__securebox-line']/following-sibling::div"));
         }
-        public WebElement RepeatPassField(){
+
+        public WebElement RepeatPassField() {
             return Driver.FindElement(By.xpath("(//input[@type='password'])[2]"));
         }
+
         public WebElement RepeatPassWarningPopup() {
             return Driver.FindElement(By.xpath("(//input[@type='password'])[2]/parent::div/parent::div/following::div"));
         }

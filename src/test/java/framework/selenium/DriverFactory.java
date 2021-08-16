@@ -9,14 +9,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverFactory {
-    public static WebDriver Build(String browserName){
-        switch (browserName.toLowerCase()){
-            case("chrome"):
+    public static WebDriver Build(String browserName) {
+        switch (browserName.toLowerCase()) {
+            case ("chrome"):
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--incognito");
                 return new ChromeDriver(chromeOptions);
-            case("firefox"):
+            case ("firefox"):
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("-private");

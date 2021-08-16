@@ -15,11 +15,11 @@ public class HeaderNavigationThroughPages {
         Map.CatalogLink().click();
     }
 
-    public void GoToServices(){
+    public void GoToServices() {
         Map.ServicesLink().click();
     }
 
-    public void GoToForum(){
+    public void GoToForum() {
         Map.ForumLink().click();
     }
 
@@ -27,7 +27,7 @@ public class HeaderNavigationThroughPages {
         return Map.HeaderTitle().getAttribute("content");
     }
 
-    public void GoToLoginForm(){
+    public void GoToLoginForm() {
         Map.LoginButton().click();
     }
 
@@ -38,11 +38,11 @@ public class HeaderNavigationThroughPages {
             return Driver.FindElement(By.xpath("//a[@href='https://catalog.onliner.by/']"));
         }
 
-        public WebElement ServicesLink(){
+        public WebElement ServicesLink() {
             return Driver.FindElement(By.xpath("//a[@href='https://s.onliner.by/tasks'][contains(@class,'b-main')]"));
         }
 
-        public WebElement ForumLink(){
+        public WebElement ForumLink() {
             return Driver.FindElement(By.xpath("//a[@href='https://forum.onliner.by/']"));
         }
 
@@ -50,7 +50,7 @@ public class HeaderNavigationThroughPages {
             return Driver.FindElement(By.xpath("//meta[@property='og:title']"));
         }
 
-        public WebElement LoginButton(){
+        public WebElement LoginButton() {
             return Driver.FindElement(By.xpath("//div[contains(@class,'auth-bar__item')][contains(text(),'Вход')]"));
         }
 

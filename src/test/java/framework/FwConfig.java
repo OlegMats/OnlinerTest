@@ -7,6 +7,7 @@ public class FwConfig {
     public DriverSettings getDriver() {
         return driver;
     }
+
     public void setDriver(DriverSettings driver) {
         this.driver = driver;
     }
@@ -14,6 +15,7 @@ public class FwConfig {
     public TestSettings getTest() {
         return test;
     }
+
     public void setTest(TestSettings test) {
         this.test = test;
     }
@@ -37,6 +39,7 @@ public class FwConfig {
         public String getUrl() {
             return url;
         }
+
         public void setUrl(String url) {
             this.url = url;
         }

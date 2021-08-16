@@ -10,7 +10,7 @@ public class Pages {
     public static LoginPage loginPage;
     public static RegistrationPage registrationPage;
 
-    public static void Init(){
+    public static void Init() {
         catalog = new CatalogPage();
         headerNavigation = new HeaderNavigationThroughPages();
         productPage = new SingleProductPage();

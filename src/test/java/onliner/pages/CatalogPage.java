@@ -3,6 +3,7 @@ package onliner.pages;
 import framework.selenium.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
     }
 
     public void GoToVideoGames() {
-        Driver.wait.Sleep(1);
+        Driver.wait.Until(ExpectedConditions.visibilityOf(Map.VideoGames()));
         Map.VideoGames().click();
     }
 
@@ -31,6 +32,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
     }
 
     public void GoToConsoles() {
+        Driver.wait.Until(ExpectedConditions.visibilityOf(Map.Consoles()));
         Map.Consoles().click();
     }
 
@@ -59,7 +61,6 @@ public class CatalogPage extends HeaderNavigationThroughPages {
     }
 
     public void OpenFirstElementOfSearchResult() {
-        Driver.wait.Sleep(1);
         Map.FirstElementOfSearchResult().click();
     }
 
@@ -119,6 +120,7 @@ public class CatalogPage extends HeaderNavigationThroughPages {
         }
 
         public WebElement FirstElementOfSearchResult() {
+            Driver.wait.Until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='schema-products'][@id='schema-products']/child::div[@class='schema-product__group']/descendant::div[@class='schema-product__title']/descendant::a")));
             return Driver.FindElement(By.xpath("//div[@class='schema-products'][@id='schema-products']/child::div[@class='schema-product__group']/descendant::div[@class='schema-product__title']/descendant::a"));
         }
 

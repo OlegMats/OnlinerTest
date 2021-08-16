@@ -4,7 +4,7 @@ import framework.selenium.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends HeaderNavigationThroughPages{
+public class LoginPage extends HeaderNavigationThroughPages {
     public LoginPageMap Map;
 
     public LoginPage() {

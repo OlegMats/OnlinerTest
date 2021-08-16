@@ -4,10 +4,20 @@ import framework.FW;
 import framework.selenium.Driver;
 import onliner.pages.HeaderNavigationThroughPages;
 import onliner.pages.Pages;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +48,10 @@ public class Verifications {
     }
 
     public static void BasketIsNotEmpty() {
-        Driver.wait.Sleep(1);
-        Assert.assertTrue(Pages.basketPage.Map.BasketContent().getText().contains("на сумму"), "Корзина пуста");
+        Driver.wait.Until((ExpectedCondition<Boolean>) drv -> Pages.basketPage.Map.BasketContent().getText().contains("на сумму"));
     }
 
     public static void NumberOfOrdersMoreThanOne() {
-        Driver.wait.Sleep(2);
         Assert.assertFalse(Pages.servicesPage.Map.ResultDetails().getText().contains("Нет Заказов"), "Заказов не найдено");
     }
 
@@ -86,9 +94,7 @@ public class Verifications {
     }
 
     public static void VerifyEmailWarningPopupAppeared(String message) {
-        //Driver.wait.Until(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.EmailWarningPopup(), message), "Отсутствует подсказка 'Некорректный e-mail'");
-        Driver.wait.Sleep(1);
-        WebElementContains(Pages.registrationPage.Map.EmailWarningPopup(), message);
+        Driver.wait.Until((ExpectedCondition<Boolean>) drv -> Pages.registrationPage.Map.EmailWarningPopup().getText().contains(message));
     }
 
     public static void VerifyPassWarningPopup(String message) {
@@ -96,9 +102,7 @@ public class Verifications {
     }
 
     public static void VerifyRepeatPassWarningPopup(String message) {
-        //Driver.wait.UntilTrue(ExpectedConditions.textToBePresentInElement(Pages.registrationPage.Map.RepeatPassWarningPopup(), message), "Отсутствует подсказка 'Пароли не совпадают'");
-        Driver.wait.Sleep(1);
-        WebElementContains(Pages.registrationPage.Map.RepeatPassWarningPopup(), message);
+        Driver.wait.Until((ExpectedCondition<Boolean>) drv -> Pages.registrationPage.Map.RepeatPassWarningPopup().getText().contains(message));
     }
 
     public static void VerifySearchResultPhonesContain(String message) {
@@ -106,12 +110,11 @@ public class Verifications {
     }
 
     public static void EnsureBasketTitleIs(String message) {
-        Driver.wait.Sleep(1);
         WebElementTextIsEqual(Pages.productPage.Map.AddToBasketBasketButton(), message);
     }
 
     public static void VerifyOrdersStatusIs(String message) {
-        Driver.wait.Sleep(1);
+        Driver.wait.Sleep(2);
         WebElementsContain(Pages.servicesPage.Map.ResultServiceStatuses(), message);
     }
 }

@@ -26,16 +26,16 @@ public abstract class BaseTest {
     }
 
     @AfterMethod
-    public void AfterMethod(ITestResult result, Method method){
-        switch(result.getStatus()){
-            case(ITestResult.SUCCESS):
+    public void AfterMethod(ITestResult result, Method method) {
+        switch (result.getStatus()) {
+            case (ITestResult.SUCCESS):
                 FW.Log().Info("Test has been successfully passed");
                 break;
-            case(ITestResult.FAILURE):
+            case (ITestResult.FAILURE):
                 Driver.TakeScreenshot(method.getName());
                 FW.Log().Info("Test has been failed");
                 break;
-            case(ITestResult.SKIP):
+            case (ITestResult.SKIP):
                 FW.Log().Info("Test has been skipped");
                 break;
             default:
